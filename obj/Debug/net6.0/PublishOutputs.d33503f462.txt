@@ -1,0 +1,9 @@
+D:\OneDrive - szmicro\codingfuture\C#\asp.net\VueWithMVC\Release\First.exe
+D:\OneDrive - szmicro\codingfuture\C#\asp.net\VueWithMVC\Release\appsettings.Development.json
+D:\OneDrive - szmicro\codingfuture\C#\asp.net\VueWithMVC\Release\appsettings.json
+D:\OneDrive - szmicro\codingfuture\C#\asp.net\VueWithMVC\Release\package-lock.json
+D:\OneDrive - szmicro\codingfuture\C#\asp.net\VueWithMVC\Release\package.json
+D:\OneDrive - szmicro\codingfuture\C#\asp.net\VueWithMVC\Release\First.dll
+D:\OneDrive - szmicro\codingfuture\C#\asp.net\VueWithMVC\Release\First.deps.json
+D:\OneDrive - szmicro\codingfuture\C#\asp.net\VueWithMVC\Release\First.runtimeconfig.json
+D:\OneDrive - szmicro\codingfuture\C#\asp.net\VueWithMVC\Release\First.pdb

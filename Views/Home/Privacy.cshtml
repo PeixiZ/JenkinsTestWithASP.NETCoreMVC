@@ -1,0 +1,95 @@
+﻿
+<link rel="stylesheet" type="text/css" href="~/node_modules/view-design/dist/styles/iview.css">
+<link rel="stylesheet" type="text/css" href="~/css/site.css">
+<script type="text/javascript" src="~/js/vue.js"></script>
+<script type="text/javascript" src="~/node_modules/view-design/dist/iview.js"></script>
+
+<div id="app1">
+    <i-button @@click="show">Click me!</i-button>
+    <Modal v-model="visible" title="Welcome">Welcome to ViewUI</Modal>
+    <Icon type="ios-checkmark" />    
+</div>
+
+<div id="app2">
+    
+    <Card style="width:350px">
+        <p slot="title">
+            <Icon type="ios-film-outline"></Icon>
+            Classic film
+        </p>
+        <a href="#" slot="extra" @@click.prevent="changeLimit">
+            <Icon type="ios-loop-strong"></Icon>
+            Change
+        </a>
+        <ul>
+            <li v-for="item in L">
+                <a :href="item.url" target="_blank">{{ item.name }}</a>
+                <span>
+                    <Icon type="ios-star" v-for="n in 4" :key="n"></Icon><Icon type="ios-star" v-if="item.rate >= 9.5"></Icon><Icon type="ios-star-half" v-else></Icon>
+                    {{ item.rate }}
+                </span>
+            </li>
+        </ul>
+    </Card>
+</div>
+
+
+<div id="app3" class="demo-split">
+    <Split v-model="split1">
+        <div slot="left" class="demo-split-pane">
+            Left Pane
+        </div>
+        <div slot="right" class="demo-split-pane">
+            Right Pane
+        </div>
+    </Split>
+</div>
+
+<script>
+    new Vue({
+        el: "#app3",
+        data:
+        {
+            split1: 0.5
+        }
+    })
+    new Vue({
+        el: "#app2",
+        data:{
+            L: [
+            {
+                name: 'A',
+                rate: 1,
+                url: ""
+            },
+            {
+                name: 'B',
+                rate: 9.2,
+                url: ""
+            },
+            {
+                name: 'C',
+                rate: 3,
+                url: ""
+            }
+            ]
+        },
+        methods: {
+            changeLimit: function()
+            {console.log("CHANGE LIMIT")
+            
+            }
+        }
+    })
+    new Vue({
+        el: '#app1',
+        data: {
+            visible: false
+        },
+        methods: {
+            show: function () {
+                this.visible = true;
+            }
+        }
+    })
+  </script>

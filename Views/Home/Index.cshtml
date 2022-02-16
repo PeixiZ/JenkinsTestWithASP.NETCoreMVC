@@ -1,0 +1,157 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+<script src="~/js/vue.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/view-design/dist/styles/iview.css">
+<script src="https://unpkg.com/view-design/dist/iview.min.js"></script>
+
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<div id="apptest">
+    <i-button >Click me!</i-button>
+    <Modal v-model="visible" title="Welcome">Welcome to ViewUI</Modal>
+</div>
+
+<div id="contentJquery">
+    <h2>This is your content Jquery</h2>
+</div>
+
+<div id="app">    
+    <span v-bind:title="message">
+        悬停查看消息
+    </span>
+    <p v-if="seen">看到我了</p>
+    <li v-for="item in todos">
+        {{item.text}}
+    </li>
+</div>
+<div id="appfive">
+    <p>{{name}}: {{GetYourName}}</p>
+    <button v-on:click="reverseMessage">点击即可反转</button>
+</div>
+<div id="InputW">
+    <p>{{message}}</p>
+    <input v-model="message">
+</div>
+<div id="Udefine">
+    <todo-item v-for="item in glist" v-bind:todo="item" v-bind:key="item.id"></todo-item>    
+</div>
+<div id="ClickToMountController">    
+    <button v-on:click="Mount">{{info}}</button>
+</div>
+
+<script>
+
+$(document).ready(function(){
+    $("#contentJquery").load("/home/GetJsonResult")
+});
+
+Vue.component('todo-item', {
+    props: ["todo"],
+    template: '<li>{{todo.text}}</li>'
+})
+new Vue({
+    el: "#InputW",
+    data: {
+        message: "input your name"
+    }
+})
+new Vue({
+    el: "#ClickToMountController",
+    data: {
+        info: "initial"
+    },
+    methods:{
+        Mount: function(){
+        console.log("click mount method")
+         axios
+        .get('/Home/GetJsonResult')
+        .then(response => {
+            console.log(response.data.requestId),
+            this.info = response.data.requestId
+        })
+        .catch(function (error) { // 请求失败处理
+            console.log(error);
+      });
+    }
+    }    
+})
+new Vue({
+    el:"#Udefine",
+    data: {
+        glist:[
+        {text: "A", id: 0},
+        {text: "B", id: 1},
+        {text: "C", id: 2}
+        ]
+    },
+    created: function(){
+        console.log("Udefine last abc is created")
+    }
+})
+var apptest = new Vue({
+    el:"#appfive",
+    data: {
+        name: "default name"
+    },
+    methods: {
+        reverseMessage: function(){            
+            console.log("invoke the reverseMessage function")
+            this.name = this.name.split("").reverse().join("")
+        }
+    },
+    computed: {
+        fullname: function(){
+            console.log("get your fullname")
+        },
+        GetYourName: function(){
+            console.log("get just name" + this.name)
+        }
+    }
+})
+apptest.$watch("name", function(newv, old){
+    console.log("name is " + newv)
+})
+var app = new Vue({
+    el: '#app',
+    data:{
+        message: "Hello world",
+        seen: true,
+        todos: [
+        {text: "study js"},
+        {text: "study vue"},
+        {text: "project"}
+        ]
+    },
+    methods:{
+        show: function(){
+
+        }
+    }
+})
+
+var apptest = new Vue({
+    el: '#apptest',
+    data:{
+        message: "Hello world",
+        seen: true,
+        todos: [
+        {text: "study js"},
+        {text: "study vue"},
+        {text: "project"}
+        ]
+    },
+    methods:{
+        show: function(){
+            
+        }
+    }
+})
+</script>
